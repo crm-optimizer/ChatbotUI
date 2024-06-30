@@ -22,8 +22,10 @@ def ask(query):
     results = collection0.find({}, sort={"$vector": query_vector}, limit=5)
     output = ""
     for res in results:
-        for key in res:
-            entry = f"<td>{res[key]}</td>"
+        j = eval(res['text'].split('|')[1][7:])
+
+        for key in j.keys():
+            entry = f"<td>{j[key]}</td>"
             output += entry
         entry = f"<tr>{entry}</tr>"
     return f"<table>{output}</table>"
