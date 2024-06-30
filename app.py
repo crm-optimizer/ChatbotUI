@@ -23,12 +23,14 @@ def ask(query):
     output = ""
     for res in results:
         j = eval(res['text'].split('|')[1][7:])
-
-        for key in j.keys():
-            entry = f"<td>{j[key]}</td>"
-            output += entry
-        entry = f"<tr>{entry}</tr>"
-    return f"<table>{output}</table>"
+        #import ipdb;ipdb.set_trace()
+        output += f"<li>{j['Borrower Name']}<json-viewer>{json.dumps(j)}</json-viewer></li>"
+        # for key in j.keys():
+        #     entry = f"<td>{j[key]}</td>"
+        #     output += entry
+        # entry = f"<tr>{entry}</tr>"
+    return f"<ul>{output}</ul>"
+    return f"<table><tbody>{output}</tbody></table>"
 
 class Object:
     def toJSON(self):
